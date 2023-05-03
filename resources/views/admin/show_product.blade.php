@@ -52,7 +52,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                                @foreach($product as $product)
+                                @foreach($products as $product)
                                 <tr>
                                     <td>{{$product->id}}</td>
                                     <td>{{$product->title}}</td>
@@ -66,11 +66,9 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($product->category == "Iced_Coffee")
-                                        Iced Coffee
-                                        @else
-                                        {{$product->category}}
-                                        @endif
+                                      @if ($product->category)
+                                        {{ category:find($product->category_id)->category_name }}
+                                      @endif
                                     </td>
                                     <td>₱{{$product->price}}</td>
                                     <td>

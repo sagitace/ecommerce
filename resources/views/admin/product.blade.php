@@ -47,132 +47,94 @@
 
         @endif
 
-
-          <div class="card mt-5">
+    <form action="{{ route ('create_product')}}" method="POST" enctype="multipart/form-data">
+      @csrf
+        <div class="card mt-5">
 
             <h1 class="font_size cart-title text-center mt-4 mb-1">Add Product</h1>
             <p class="text-center text-muted mb-3">Product Details</p>
 
-            <form action="{{url('/add_product')}}" method="POST" enctype="multipart/form-data">
+            <div class="row border rounded m-3 d-flex">
+                
+              <div class="col-5 m-5">
+                <label class="form-label" for="title">Product Title</label>
+                <input class="form-control text-dark" type="text" name="title" id="title">
 
-            @csrf
+                <label class="form-label" for="price">Product Price</label>
+                <input class="form-control text-dark" type="number" name="price" id="price">
 
-            <div class="container">
-            <div class="row">
-              <div class="col-md-6">
-                  <div class="row">
-                      <div class="col-12">
+                <label class="form-label" for="discount_price">Discount Price</label>
+                <input class="form-control text-dark" type="number" name="discount_price" id="discount_price">
 
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Name</label>
-                            <div class="col-sm-8">
-                              <input type="text" name="title" class="form-control text-dark" placeholder="Enter product name" required=""/>
-                            </div>
-                          </div>
-
-                      </div>
-                      <div class="col-12">
-
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Price</label>
-                            <div class="col-sm-8">
-                              <input type="number" name="price" class="form-control text-dark" placeholder="Enter product price" min="1" required=""/>
-                            </div>
-                          </div>
+                
+                <label class="form-label" for="quantity">Quantity</label>
+                <input class="form-control text-dark" type="number" name="quantity" id="quantity">
 
 
-                      </div>
-                      <div class="col-12">
+                <label class="form-label" for="category">Category</label>
+                <select class="form-control text-dark" name="category_id">
+                  <option value="3" selected >Others</option>
+                  @foreach ($category as $one_category )
+                    <option 
+                      value="{{$one_category['id']}}">{{$one_category['id']}}.{{$one_category['category_name']}}
+                    </option>
+                  @endforeach                                        
+                </select>
+              </div> 
+              {{-- left col --}}
 
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Discounted Price</label>
-                            <div class="col-sm-8">
-                              <input type="number" name="discount" class="form-control text-dark" min="1" placeholder="Enter product discounted price"/>
-                            </div>
-                          </div>
+              <div class="col-5 m-5">
+                
+                <h6>Availability</h6>
+                <div class="form-check">
+                  <input class="form-check-input text-dark" type="radio" name="availability" id="availability" value="1" checked>
+                  <label class="form-check-label " for="availability">
+                    Available 
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="availability" id="availability" value="2">
+                  <label class="form-check-label " for="availability">
+                    Not Available
+                  </label>
+                </div>
 
-                      </div>
-                      <div class="col-12">
-
-
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Category</label>
-                            <div class="col-sm-8">
-                              <select class="form-control text-white" required="">
-                                <option value="" selected="" class="text-muted">--select--</option>
-                                @foreach($category as $category)
-
-                              <option class="text-white" value="{{$category->category_name}}">{{$category->category_name}}</option>
-
-                              @endforeach
-                              </select>
-                            </div>
-                          </div>
-
-                      </div>
-                      <div class="col-12">
-
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Product Image</label>
-                            <div class="col-sm-8">
-                              <input type="file" name="image" class="form-control text-secondary"  required=""/>
-                            </div>
-                          </div>
+                <div class="mb-3">
+                  <label for="formFile" class="form-label">Product Image</label>
+                  <input class="form-control bg-light" type="file" id="formFile" name="image">
+                </div>
 
 
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="row">
-                      <div class="col-12">
-                        <div class="form-group row">
-                          <label class="col-sm-4 col-form-label">Availability</label>
-                          <div class="col-sm-4">
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="quantity" id="membershipRadios1" value="Available" checked> Available </label>
-                            </div>
-                          </div>
-                          <div class="col-sm-4">
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="quantity" id="membershipRadios2" value="Not_Available"> Not Available </label>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                        <div class="col-12">
-                            <div class="form-group row">
-                            <label for="exampleTextarea1" class="col-sm-4 col-form-label">Description</label>
+                <label class="form-label mt-3" for="description">Description</label>
+                <div class="form-floating">
+                  <textarea class="form-control text-dark" name="description" placeholder="Leave a comment here" id="description"></textarea>
+                </div>
 
+                <div class="row mt-5 d-flex justify-content-end">
+                  <button class="btn btn-lg btn-warning fw-bold">
+                      Add Product
+                  </button>
+                </div>
 
-                        <div class="col-sm-8">
-                            <textarea class="form-control text-secondary" id="exampleTextarea1" rows="4" style="width: 100%" name="description" placeholder="Product Details..." required=""></textarea>
-</div></div>
-                        </div> </div>
-                      <div class="col-12">
-                        <div style="width: 100%;">
+              </div> 
+                {{-- right col --}}
 
-                          <input type="submit" value="Add Product" class="btn btn-primary bg-primary" style="float:right; font-weight: 600;">
-                      </div>
-                    </div>
-                  </div>
-              </div>
-          </div>
+            </div> 
+            {{-- row --}}
+         
         </div>
+        {{-- card --}}
+    </form>
+   
+
+            
 
 
 
 
 
 
-
-            </form>
-
-          </div>
-          </div>
-        </div>
+ 
     <!-- container-scroller -->
     <!-- plugins:js -->
    @include('admin.script')
