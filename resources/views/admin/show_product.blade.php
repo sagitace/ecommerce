@@ -56,20 +56,17 @@
                                 <tr>
                                     <td>{{$product->id}}</td>
                                     <td>{{$product->title}}</td>
-                                    <td>{{$product->description}}</td>
+
+                                    <td class="text-wrap" style="max-width: 10rem;">{{$product->description}}</td>
+                                    
                                     <td><img class="img_size" src="/product/{{$product->image}}"></td>
                                     <td>
-                                        @if($product->quantity == "Available")
-                                        {{$product->quantity}}
-                                        @else
-                                        Not Available
-                                        @endif
+                                      {{$product->availability}}
                                     </td>
                                     <td>
-                                      @if ($product->category)
-                                        {{ category:find($product->category_id)->category_name }}
-                                      @endif
+                                      {{$product->category->category_name}}
                                     </td>
+
                                     <td>₱{{$product->price}}</td>
                                     <td>
                                         @if($product->discount_price != null)
@@ -82,7 +79,7 @@
 
 
                                     <td>
-                                      <a class="btn btn-danger" onclick="return confirm('Are you sure to delete this product?')" href="{{url('delete_product', $product->id)}}">Archive</a>
+                                      <a class="btn btn-danger" onclick="return confirm('Are you sure to delete this product?')" href="{{url('delete_product', $product->id)}}">Archive </a>
                                     </td>
 
                                     <td>

@@ -72,7 +72,7 @@
 
 
                 <label class="form-label" for="category">Category</label>
-                <select class="form-control text-dark" name="category_id">
+                <select class="form-control text-dark" name="categories_id">
                   <option value="3" selected >Others</option>
                   @foreach ($category as $one_category )
                     <option 
@@ -100,7 +100,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="formFile" class="form-label">Product Image</label>
+                  <label for="formFile" class="form-label">Product</label>
                   <input class="form-control bg-light" type="file" id="formFile" name="image">
                 </div>
 

@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index(){
-        $products=product::all();
-        $total_product=product::all()->count();
-
-        return view('admin.show_product', compact('products','total_product'));
+        $products = Product::with('category')->get();
+        // dd($products);
+        $total_product = $products->count();
+        
+        return view('admin.show_product', compact('products', 'total_product'));
     }
+    
 
 
     public function create(){
@@ -44,7 +46,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->discount_price = $request->discount_price;
-        $product->category_id = $request->category_id;
+        $product->categories_id = $request->categories_id;
         $product->availability = $request->availability;
         $product->image = $request->image;
 
