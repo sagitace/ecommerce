@@ -59,7 +59,9 @@
 
                                     <td class="text-wrap" style="max-width: 10rem;">{{$product->description}}</td>
                                     
-                                    <td><img class="img_size" src="/product/{{$product->image}}"></td>
+                                    <td class="d-flex justify-content-center"><img class="img_size" 
+                                      src="{{($product->image)? '/product/'.$product->image : '/product/no-image.png'}}"
+                                    </td>
                                     <td>
                                       {{$product->availability}}
                                     </td>

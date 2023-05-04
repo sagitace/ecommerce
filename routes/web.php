@@ -30,10 +30,13 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
-route::get('/create_product', [ProductController::class,'create']);
-route::post('/add_product', [ProductController::class,'store'])->name('create_product');
-route::get('/show_product', [ProductController::class,'index']);
+// PRODUCTS (ADMIN)
+    //show create product form
+    route::get('/create_product', [ProductController::class,'create']);
+    //store product
+    route::post('/add_product', [ProductController::class,'store'])->name('create_product');
+    //show all products
+    route::get('/show_product', [ProductController::class,'index']);
 
 
 route::get('/redirect', [HomeController::class,'redirect'])->middleware('auth','verified');
