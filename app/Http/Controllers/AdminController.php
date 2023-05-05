@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\Order;
 use PDF;
-use App\Models\User;
 use Notification;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use App\Notifications\SendEmailNotification;
 
 class AdminController extends Controller
@@ -51,13 +52,15 @@ class AdminController extends Controller
     //     return view('admin.show_product', compact('product','total_product'));
     // }
 
-    public function delete_product($id){
-        $product=product::find($id);
+    // public function delete_product($id){
+    //     $product=product::find($id);
+    //     // dd($product);
 
-        $product->delete();
+    //     $product->deleted_at=Carbon::now();
+    //     $product->save();
 
-        return redirect()->back()->with('message', 'Product deleted successfully!');
-    }
+    //     return redirect()->back()->with('message', 'Product archieved');
+    // }
 
     public function update_product($id){
 

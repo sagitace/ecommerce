@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('price')->nullable();
             $table->string('discount_price')->nullable();
             $table->integer('availability')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

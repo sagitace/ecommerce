@@ -58,21 +58,21 @@
                 
               <div class="col-5 m-5">
                 <label class="form-label" for="title">Product Title</label>
-                <input class="form-control text-dark" type="text" name="title" id="title">
+                <input class="form-control text-dark rounded-lg" type="text" name="title" id="title">
 
                 <label class="form-label" for="price">Product Price</label>
-                <input class="form-control text-dark" type="number" name="price" id="price">
+                <input class="form-control text-dark rounded-lg" type="number" name="price" id="price">
 
                 <label class="form-label" for="discount_price">Discount Price</label>
-                <input class="form-control text-dark" type="number" name="discount_price" id="discount_price">
+                <input class="form-control text-dark rounded-lg" type="number" name="discount_price" id="discount_price">
 
                 
                 <label class="form-label" for="quantity">Quantity</label>
-                <input class="form-control text-dark" type="number" name="quantity" id="quantity">
+                <input class="form-control text-dark rounded-lg" type="number" name="quantity" id="quantity">
 
 
                 <label class="form-label" for="category">Category</label>
-                <select class="form-control text-dark" name="categories_id">
+                <select class="form-control text-dark rounded-lg" name="categories_id">
                   <option value="3" selected >Others</option>
                   @foreach ($category as $one_category )
                     <option 
@@ -88,7 +88,7 @@
                 <h6>Availability</h6>
                 <div class="form-check">
                   <input class="form-check-input text-dark" type="radio" name="availability" id="availability" value="1" checked>
-                  <label class="form-check-label " for="availability">
+                  <label class="form-check-label  " for="availability">
                     Available 
                   </label>
                 </div>
@@ -101,13 +101,13 @@
 
                 <div class="mb-3">
                   <label for="formFile" class="form-label">Product</label>
-                  <input class="form-control bg-light" type="file" id="formFile" name="image">
+                  <input class="form-control rounded-lg" type="file" id="formFile" name="image">
                 </div>
 
 
                 <label class="form-label mt-3" for="description">Description</label>
                 <div class="form-floating">
-                  <textarea class="form-control text-dark" name="description" placeholder="Leave a comment here" id="description"></textarea>
+                  <textarea class="form-control text-dark rounded-lg" name="description" placeholder="Leave a comment here" id="description"></textarea>
                 </div>
 
                 <div class="row mt-5 d-flex justify-content-end">

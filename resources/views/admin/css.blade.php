@@ -17,3 +17,10 @@
     <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" />
+
+    <style>
+        .hover-text:hover {
+            color: rgb(225, 228, 220) !important;
+            font-weight: bold;
+            }
+    </style>

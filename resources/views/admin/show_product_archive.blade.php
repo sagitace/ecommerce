@@ -40,8 +40,8 @@
                         <div class="row">
                           <div class="col-12 ms-5 mb-4 d-flex justify-content-end">
 
-                            <a href="/show_product/archive">
-                              <button class="btn hover-text text-warning">See Archived...</button>      
+                            <a href="/show_product">
+                              <button class="btn hover-text text-warning">...Back</button>      
                             </a>
                            
                           </div>
@@ -66,7 +66,7 @@
                             </thead>
                             <tbody>
                                 @foreach($products as $product)
-                                @if ($product->deleted_at == null)
+                                @if ($product->deleted_at != null)
                                     
                                 
                                 <tr>
@@ -108,7 +108,7 @@
 
 
                                     <td>
-                                      <a class="btn btn-danger" onclick="return confirm('Are you sure to delete this product?')" href="{{url('delete_product', $product->id)}}">Archive </a>
+                                      <a class="btn btn-warning" onclick="return confirm('Are you sure you want to restore this product?')" href="{{url('restore_product', $product->id)}}">Restore </a>
                                     </td>
 
                                     <td>
