@@ -112,7 +112,7 @@
                                     </td>
 
                                     <td>
-                                      <a class="btn btn-success" href="{{url('update_product',$product->id)}}">Edit</a>
+                                      <a class="btn btn-success" href="{{url('edit_product',$product->id)}}">Edit</a>
                                     </td>
 
                                 </tr>

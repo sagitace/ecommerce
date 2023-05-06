@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use PDO;
 
 class ProductController extends Controller
 {
@@ -25,7 +26,7 @@ class ProductController extends Controller
         return view('admin.product', compact('category'));
     }
 
-        public function view_product(){
+    public function view_product(){
     $category = category::all();
     return view('admin.product', compact('category'));
     }
@@ -79,7 +80,32 @@ class ProductController extends Controller
         $product->deleted_at=null;
         $product->save();
 
-        return redirect()->back()->with('message', 'Product restored');
+        return redirect()->back()->with('message', 'Product restore');
     }
 
+    public function edit_product($id){
+        $product = product::with('category')->find($id);
+        $category = Category::all();
+        return view('admin.update_product', compact('product', 'category'));
+    }
+
+    public function update_product(Request $request, Product $product){
+        
+         $product->title= $request->input('title');
+         $product->price= $request->input('price');
+         $product->discount_price= $request->input('discount_price');
+         $product->categories_id = $request->input('categories_id');
+         $product->availability =$request->input('availability');
+         $product->description =$request->input('description');
+         
+        if($request->hasFile('image')){
+            $product['image'] = $request->file('image')->store('product', 'public');
+        }
+        
+         
+        $product->save();
+        
+        return redirect()->back()->with('message','Successfully updated product');      
+
+    }
 }

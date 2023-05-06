@@ -5,6 +5,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -44,19 +45,35 @@ Route::middleware([
     //restore product
     route::get('/restore_product/{id}', [ProductController::class,'restore_product']);
 
+    //show edit form
+    route::get('/edit_product/{id}', [ProductController::class,'edit_product']);
+
+    //update product
+    route::put('/edit_product/{product}', [ProductController::class,'update_product']);
+
+
+//CATEGORIES (ADMIN)
+    //show all categories and form
+    route::get('/view_category', [CategoryController::class,'view_category']);
+
+    //add or store category
+    route::post('/add_category', [CategoryController::class,'add_category']);
+
+    //delte category (should be soft delete: to be updated)
+    route::get('/delete_category/{id}', [CategoryController::class,'delete_category']);
+
 
 
 route::get('/redirect', [HomeController::class,'redirect'])->middleware('auth','verified');
 
-route::get('/view_category', [AdminController::class,'view_category']);
 
-route::post('/add_category', [AdminController::class,'add_category']);
-
-route::get('/delete_category/{id}', [AdminController::class,'delete_category']);
 
 route::get('/update_product/{id}', [AdminController::class,'update_product']);
 
 route::post('/update_product_confirm/{id}', [AdminController::class,'update_product_confirm']);
+
+
+
 
 route::get('/order', [AdminController::class,'order']);
 

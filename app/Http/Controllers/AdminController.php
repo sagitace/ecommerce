@@ -15,53 +15,7 @@ use App\Notifications\SendEmailNotification;
 
 class AdminController extends Controller
 {
-    public function view_category(){
-
-        if(Auth::id()){
-
-             $data=category::all();
-            return view('admin.category',compact('data'));
-
-        }
-        else{
-            return redirect('/login');
-        }
-
-
-    }
-
-    public function add_category(Request $request){
-       $data=new Category;
-        $data->category_name=$request->category;
-
-        $data->save();
-
-        return redirect()->back()->with('message','Added Successfully');
-    }
-
-    public function delete_category($id){
-        $data = category::find($id);
-        $data->delete();
-        return redirect()->back()->with('message','Category deleted successfully');
-    }
-
-    // public function show_product(){
-    //     $product=product::all();
-    //     $total_product=product::all()->count();
-
-    //     return view('admin.show_product', compact('product','total_product'));
-    // }
-
-    // public function delete_product($id){
-    //     $product=product::find($id);
-    //     // dd($product);
-
-    //     $product->deleted_at=Carbon::now();
-    //     $product->save();
-
-    //     return redirect()->back()->with('message', 'Product archieved');
-    // }
-
+   
     public function update_product($id){
 
         $product = product::find($id);
