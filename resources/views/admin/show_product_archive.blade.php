@@ -33,7 +33,7 @@
                     <div class="card">
                       <div class="card-body">
                       
-                        <h4 class="card-title" style="font-weight: 800;">All Product</h4>
+                        <h4 class="card-title" style="font-weight: 800;">All Product Archive</h4>
                         <p class="card-description mb-3"> A total of <span style="font-weight: bold;">{{$total_product}}</span> product(s)
                         </p>
                         

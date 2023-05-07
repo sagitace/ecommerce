@@ -40,7 +40,8 @@ class HomeController extends Controller
 
         if($usertype=='1')
         {
-            $total_product=product::all()->count();
+            $total_product = Product::whereNull('deleted_at')->count();
+            $total_product_archived = Product::whereNotNull('deleted_at')->count();
             $total_order=order::all()->count();
             $total_user=user::all()->count();
             $order=order::all();
@@ -58,7 +59,7 @@ class HomeController extends Controller
             $total_delivered=order::where('delivery_status','=','delivered')->get()->count();
 
             $total_processing=order::where('delivery_status','=','processing')->get()->count();
-            return view('admin.home', compact('total_product','total_order','total_user','total_revenue', 'total_delivered','total_processing'));
+            return view('admin.home', compact('total_product','total_order','total_user','total_revenue', 'total_delivered','total_processing', 'total_product_archived'));
         }
         else{
 
