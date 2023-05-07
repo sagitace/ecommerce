@@ -63,7 +63,7 @@ class HomeController extends Controller
         }
         else{
 
-            $product=Product::paginate(12);
+            $product=Product::whereNull('deleted_at')->paginate(12);
             $category = category::all();
             $cart_total = cart::where('user_id',Auth::id())->count();
             return view('home.userpage',compact('product','category','cart_total'));

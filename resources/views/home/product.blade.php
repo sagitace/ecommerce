@@ -45,7 +45,7 @@
       <div class="filters-content">
         <div class="row grid d-flex">
 
-            @foreach($product as $products)
+          @foreach($product as $products)
             @if($products->quantity == "Available")
 <a href="{{url('product_details',$products->id)}}" style="z-index: 1;" class="btn3">
 
@@ -107,7 +107,7 @@
             <div class="box">
               <div>
                 <div class="img-box">
-                  <img style="height: 170px; width:150px;" src="product/{{$products->image}}" alt="">
+                  <img class="img-fluid rounded-circle" style="height: 170px; width:150px;" src="storage/{{$products->image}}" alt="">
                 </div>
                 <div class="detail-box">
                   <h5>
@@ -136,9 +136,14 @@
                 @endif
 
                   </div>
-            <div style="margin: 10px 0">
+            <div class=" mt-5 d-flex justify-content-end">
 
-                <h5 class="text-danger" style="font-size: 15px;">OUT OF STOCK!</h5>
+              @if ($products->quantity > 0)
+              <h5 class="text-warning" style="font-size: 1rem;">AVAILABLE!</h5> 
+              @else
+                <h5 class="text-muted" style="font-size: 1rem;">OUT OF STOCK</h5> 
+              @endif
+                
 
             </div>
                 </div>
