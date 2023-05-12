@@ -75,15 +75,10 @@
 
                                     <td class="text-wrap" style="max-width: 10rem;">{{$product->description}}</td>
                                     
-                                    <td class="d-flex justify-content-center"><img class="img_size" 
-                                      src="
-                                      
-                                      
-                                      {{ $product->image ? asset('storage/' . $product->image) : asset('/product/no-image.png') }}
-
-                                      
-                                      ">
-                                                                          
+                                    <td class="d-flex justify-content-center">
+                                      <img class="img_size" 
+                                       src="{{ $product->image ? asset('storage/' . $product->image) : asset('storage/no-image.png') }}">
+                                  
                                     </td>
 
                                     <td>

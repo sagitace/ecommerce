@@ -27,8 +27,9 @@
         @endif
 
 
-
+    
         <ul class="filters_menu">
+
             <li class="active" data-filter="*">All</li>
             @foreach($category as $category)
 
@@ -46,23 +47,27 @@
         <div class="row grid d-flex">
 
           @foreach($product as $products)
-            @if($products->quantity == "Available")
-<a href="{{url('product_details',$products->id)}}" style="z-index: 1;" class="btn3">
+            @if($products->quantity != 0 || $products->quantity != null)
+              <a href="{{url('product_details',$products->id)}}" style="z-index: 1;" class="btn3">
 
           <div class="col-sm-6 col-lg-4 all {{$products->category}}">
             <div class="box">
               <div>
                 <div class="img-box">
-                  <img style="height: 170px; width:150px;" src="product/{{$products->image}}" alt="">
+                  <img class="rounded-circle" style="height: 170px; width:150px;" 
+                  
+                  src=" {{ $products->image ? asset('storage/' . $products->image) : asset('/product/no-image.png') }} " 
+
+                  alt="">
                 </div>
                 <div class="detail-box">
                   <h5 class="mt-2" style="font-weight: bold;">
-                    {{$products->title}}
+                   {{$products->title}}
                   </h5>
 
-                  <div class="options">
+                  <div class="options ">
 
-                @if($products->discount_price!=null)
+                @if($products->discount_price!=null || $products->discount_price!= 0 )
 
                 <div style="display:flex;" class="mt-2">
                     <h6 style="margin-right:5px; font-weight:bold;">
@@ -76,9 +81,6 @@
                     <h6 class="text-light" style=""> <span style="font-weight: bold;">&nbsp;&nbsp;{{$discount}}</span>% </h6>
                 </div>
 
-                <?php $saved = $products->price - $products->discount_price ?>
-                <h6 class="text-success" style="font-size: 20px; font-weight: bold;">&nbsp; Save ₱{{$saved}}!</h6>
-
                 @else
 
                     <h6 style="font-weight:bold;">
@@ -88,9 +90,16 @@
                 @endif
 
                   </div>
-            <div style="margin: 15px 0;">
+            <div style="margin: 15px 0;" class=" d-flex justify-content-end">
 
-                <h6 ><span style="font-weight: bold;"class="text-warning">{{$products->quantity}}</span> now!</h6>
+              @if ($products->quantity)
+                <h6 class="text-warning ">Available now!</h6> 
+              @else
+                <h6 class="text-muted ">Not Availalbe Right Now</h6> 
+              
+              
+              @endif
+                
 
             </div>
 
@@ -100,14 +109,16 @@
               </div>
             </div>
           </div>
-</a>
+    </a>
 
           @else
           <div class="col-sm-6 col-lg-4 all">
             <div class="box">
               <div>
                 <div class="img-box">
-                  <img class="img-fluid rounded-circle" style="height: 170px; width:150px;" src="storage/{{$products->image}}" alt="">
+                  <img class="img-fluid rounded-circle" style="height: 8rem; width:auto;" 
+                  src="{{ $products->image ? asset('storage/' . $products->image) : asset('product/no-image.png') }}" 
+                  alt="">
                 </div>
                 <div class="detail-box">
                   <h5>
@@ -136,16 +147,6 @@
                 @endif
 
                   </div>
-            <div class=" mt-5 d-flex justify-content-end">
-
-              @if ($products->quantity > 0)
-              <h5 class="text-warning" style="font-size: 1rem;">AVAILABLE!</h5> 
-              @else
-                <h5 class="text-muted" style="font-size: 1rem;">OUT OF STOCK</h5> 
-              @endif
-                
-
-            </div>
                 </div>
               </div>
             </div>
