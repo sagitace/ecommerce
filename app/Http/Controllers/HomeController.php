@@ -54,7 +54,7 @@ class HomeController extends Controller
                 else{
                     $total_revenue=$total_revenue+0;
                 }
-            }
+            } 
 
             $total_delivered=order::where('delivery_status','=','delivered')->get()->count();
 
