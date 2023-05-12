@@ -127,7 +127,7 @@ route::get('/cancel_order/{id}', [HomeController::class,'cancel_order']);
 
 route::get('/product_search', [HomeController::class,'product_search']);
 
-route::get('/products', [HomeController::class,'products']);
+route::get('/products', [HomeController::class,'products'])->name('products');
 
 route::get('/search_product', [HomeController::class,'search_product']);
 

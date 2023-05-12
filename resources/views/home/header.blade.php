@@ -15,12 +15,12 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto">
               <li class="nav-item">
-                <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link {{ !Route::is('products') ? 'text-warning' : 'text-light' }} " href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
               </li>
               
               
                 <li class="nav-item">
-                    <a class="nav-link" href="/products">Menu</a>
+                    <a class="nav-link  {{ Route::is('products') ? 'text-warning' : 'text-light' }} " href="/products">Menu</a>
                 </li>
                 
                 
@@ -44,12 +44,12 @@
             </li>
             @else
             <li class="nav-item ml-2">
-                <a href="{{ route('login') }}" class="btn btn-primary" id="logincss">
+                <a href="{{ route('login') }}" class="ml-2 btn btn-outline-light btn-grow" id="logincss">
                         Login
                 </a>
             </li>
             <li class="nav-item">
-                 <a href="{{ route('register') }}" class="btn btn-success">
+                 <a href="{{ route('register') }}" class="ml-1 btn btn-warning btn-grow">
                         Register
                 </a>
             </li>
