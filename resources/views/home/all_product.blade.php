@@ -99,7 +99,7 @@
 
 
   <!-- food section -->
-    @include('home.product_view')
+    @include('home.product')
   <!-- end food section -->
 
   <script>

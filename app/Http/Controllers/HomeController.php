@@ -21,7 +21,27 @@ use Stripe;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
-{
+{   
+    public function products_filter($id){
+        // $product = Product::where('categories_id', $id)->get();
+         
+        // // $product=Product::paginate(12);
+
+        // $category = category::all();
+        // $cart_total = cart::where('user_id',Auth::id())->count();
+
+        // return view('home.userpage',compact('product','category', 'cart_total'));
+
+        $product = Product::where('categories_id', $id)
+        ->paginate(12)
+        ->withQueryString();
+
+
+        $category = Category::all();
+        $cart_total = Cart::where('user_id', Auth::id())->count();
+
+        return view('home.userpage', compact('product', 'category', 'cart_total'));
+    }
 
     public function index()
     {
@@ -40,7 +60,8 @@ class HomeController extends Controller
 
         if($usertype=='1')
         {
-            $total_product=product::all()->count();
+            $total_product = Product::whereNull('deleted_at')->count();
+            $total_product_archived = Product::whereNotNull('deleted_at')->count();
             $total_order=order::all()->count();
             $total_user=user::all()->count();
             $order=order::all();
@@ -53,16 +74,16 @@ class HomeController extends Controller
                 else{
                     $total_revenue=$total_revenue+0;
                 }
-            }
+            } 
 
             $total_delivered=order::where('delivery_status','=','delivered')->get()->count();
 
             $total_processing=order::where('delivery_status','=','processing')->get()->count();
-            return view('admin.home', compact('total_product','total_order','total_user','total_revenue', 'total_delivered','total_processing'));
+            return view('admin.home', compact('total_product','total_order','total_user','total_revenue', 'total_delivered','total_processing', 'total_product_archived'));
         }
         else{
 
-            $product=Product::paginate(12);
+            $product=Product::whereNull('deleted_at')->paginate(12);
             $category = category::all();
             $cart_total = cart::where('user_id',Auth::id())->count();
             return view('home.userpage',compact('product','category','cart_total'));

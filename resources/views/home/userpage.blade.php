@@ -31,7 +31,6 @@
   <!-- responsive style -->
   <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet" />
 
-
 </head>
 
 <body>
@@ -54,8 +53,10 @@
   <!-- end offer section -->
 
   <!-- food section -->
-
-    @include('home.product')
+  
+   @include('home.product')
+  
+    
   <!-- end food section -->
 
   <!-- about section -->
