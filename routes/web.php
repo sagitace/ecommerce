@@ -19,7 +19,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-route::get('/', [HomeController::class,'index']);
+route::get('/', [HomeController::class,'index'])->name('home');
 
 Route::middleware([
     'auth:sanctum',
@@ -106,6 +106,10 @@ route::get('/detailed_orders', [AdminController::class,'detailed_orders']);
 
 
 // Home Controller
+    //filter products 
+    route::get('/products/category/{id}', [HomeController::class,'products_filter'])->name('products_filter');
+
+
 
 route::get('/product_details/{id}', [HomeController::class,'product_details']);
 
@@ -132,4 +136,5 @@ route::get('/products', [HomeController::class,'products'])->name('products');
 route::get('/search_product', [HomeController::class,'search_product']);
 
 route::get('/book_now', [HomeController::class,'book_now']);
+
 

@@ -30,17 +30,17 @@
     
         <ul class="filters_menu">
 
-            <li class="active" data-filter="*">All</li>
-            @foreach($category as $category)
+            <a href="/"><li class="{{ Route::is('home') ? 'active' : 'text-dark'  }}" >All</li>
+            @foreach($category as $category)</a>
 
-            @if($category->category_name == "Iced_Coffee")
-            <li data-filter=".{{$category->category_name}}">Iced Coffee</li>
-            @else
-            <li data-filter=".{{$category->category_name}}">{{$category->category_name}}</li>
-            @endif
-
+            <a href="/products/category/{{$category->id}}">
+              <li class="{{ $product[0]->id == $category->id && Route::is('products_filter') ? 'active' : 'text-dark'  }}" >{{$category->category_name}}</li>
+            </a>
+            
+            
+        
             @endforeach
-          </ul>
+        </ul>
 
 
       <div class="filters-content">
@@ -56,7 +56,7 @@
                 <div class="img-box">
                   <img class="rounded-circle" style="height: 170px; width:150px;" 
                   
-                  src=" {{ $products->image ? asset('storage/' . $products->image) : asset('/product/no-image.png') }} " 
+                  src=" {{ $products->image  ? asset('storage/' . $products->image) : asset('/product/no-image.png') }} " 
 
                   alt="">
                 </div>

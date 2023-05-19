@@ -21,7 +21,27 @@ use Stripe;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
-{
+{   
+    public function products_filter($id){
+        // $product = Product::where('categories_id', $id)->get();
+         
+        // // $product=Product::paginate(12);
+
+        // $category = category::all();
+        // $cart_total = cart::where('user_id',Auth::id())->count();
+
+        // return view('home.userpage',compact('product','category', 'cart_total'));
+
+        $product = Product::where('categories_id', $id)
+        ->paginate(12)
+        ->withQueryString();
+
+
+        $category = Category::all();
+        $cart_total = Cart::where('user_id', Auth::id())->count();
+
+        return view('home.userpage', compact('product', 'category', 'cart_total'));
+    }
 
     public function index()
     {
